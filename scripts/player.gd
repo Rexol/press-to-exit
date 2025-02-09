@@ -17,11 +17,11 @@ var rotation_direction = 1  # 1 - clockwise, -1 - counterclockwise
 var locked = false
 
 func _input(event):
-	if moving:
-		move_direction = Vector3.ZERO
-		moving = false
-
 	if event.is_action_pressed("latter_button"):
+		if moving:
+			move_direction = Vector3.ZERO
+			moving = false
+
 		anim_player.play("press_feedback")
 		if locked:
 			return
