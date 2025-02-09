@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://rin1wsdgxdc3"]
+
+[ext_resource type="Script" path="res://scripts/interaction_slot.gd" id="1_mfxjo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgbir"]
+albedo_color = Color(0.664833, 0.000816009, 0.750442, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3phby"]
+material = SubResource("StandardMaterial3D_mgbir")
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x07l8"]
+size = Vector3(1, 0.2, 1)
+
+[node name="InteractionSlot" type="Node3D"]
+script = ExtResource("1_mfxjo")
+metadata/_edit_horizontal_guides_ = [10.0]
+metadata/_edit_vertical_guides_ = [10.0]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3phby")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_x07l8")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 328.0
+offset_bottom = 38.0

@@ -14,7 +14,7 @@ var selecting_direction = false
 var moving = false
 var start_position = Vector3.ZERO
 var rotation_direction = 1  # 1 - clockwise, -1 - counterclockwise
-
+var locked = false
 
 func _input(event):
 	if moving:
@@ -22,12 +22,17 @@ func _input(event):
 		moving = false
 
 	if event.is_action_pressed("latter_button"):
+		anim_player.play("press_feedback")
+		if locked:
+			return
 		selecting_direction = true
 		ring.visible = true
 		arrow.visible = true
-		anim_player.play("press_feedback")
 
 	elif event.is_action_released("latter_button"):
+		anim_player.play("release_feedback")
+		if locked:
+			return
 		selecting_direction = false
 		ring.visible = false
 		arrow.visible = false
@@ -51,3 +56,8 @@ func _physics_process(delta: float) -> void:
 		if global_transform.origin.distance_to(start_position) >= travel_distance:
 			moving=false
 			velocity=Vector3.ZERO
+
+func lock_movement(val: bool):
+	moving=false
+	velocity=Vector3.ZERO
+	locked=val

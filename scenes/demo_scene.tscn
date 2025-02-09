@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6jfqn13ciqwu"]
+[gd_scene load_steps=8 format=3 uid="uid://b6jfqn13ciqwu"]
 
 [ext_resource type="PackedScene" uid="uid://qn2ndofseqlm" path="res://scenes/player.tscn" id="1_ayjxf"]
+[ext_resource type="PackedScene" uid="uid://ccv27786t0nnb" path="res://scenes/slot_and_door.tscn" id="2_wyrjo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_awnil"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,23 +15,55 @@ background_mode = 2
 sky = SubResource("Sky_5upgx")
 tonemap_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwhrt"]
+albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_obcdt"]
+material = SubResource("StandardMaterial3D_uwhrt")
 size = Vector2(10, 10)
 
 [node name="DemoScene" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.721493, -0.599653, 0.34621, -9.83852e-09, 0.5, 0.866026, -0.692422, 0.624832, -0.360747, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n2e0q")
 
 [node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 5, 5)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 7, 5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_obcdt")
 
 [node name="Player" parent="." instance=ExtResource("1_ayjxf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.26508, 0.5, 2.42871)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
+use_collision = true
+size = Vector3(11, 1, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 5)
+use_collision = true
+size = Vector3(11, 1, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 0)
+use_collision = true
+size = Vector3(1, 1, 11)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -1)
+use_collision = true
+size = Vector3(1, 1, 9)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
+use_collision = true
+size = Vector3(1, 1, 8)
+
+[node name="SlotAndDoor" parent="." instance=ExtResource("2_wyrjo")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 5, 0.5, 4)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccv27786t0nnb"]
+
+[ext_resource type="Script" path="res://scripts/slot_and_door.gd" id="1_oicyr"]
+[ext_resource type="PackedScene" uid="uid://dmba417rg84tb" path="res://scenes/door.tscn" id="1_q6fiq"]
+[ext_resource type="PackedScene" uid="uid://rin1wsdgxdc3" path="res://scenes/interaction_slot.tscn" id="2_yrf4a"]
+
+[node name="SlotAndDoor" type="Node3D"]
+script = ExtResource("1_oicyr")
+
+[node name="Door" parent="." instance=ExtResource("1_q6fiq")]
+
+[node name="InteractionSlot" parent="." instance=ExtResource("2_yrf4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.4, 1)
