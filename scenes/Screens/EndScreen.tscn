@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3jo81qy2kohm"]
+[gd_scene load_steps=5 format=3 uid="uid://c3jo81qy2kohm"]
 
 [ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_vypw8"]
 
@@ -9,7 +9,10 @@ subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_qj88s"]
 font = SubResource("SystemFont_phvvd")
-font_size = 32
+font_size = 64
+
+[sub_resource type="SystemFont" id="SystemFont_e82tj"]
+font_names = PackedStringArray("Tinkoff Sans")
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
@@ -53,6 +56,8 @@ label_settings = SubResource("LabelSettings_qj88s")
 
 [node name="RestartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_e82tj")
+theme_override_font_sizes/font_size = 32
 text = "Restart Demo"
 
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

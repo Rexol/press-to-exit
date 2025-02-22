@@ -1,9 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6jfqn13ciqwu"]
+[gd_scene load_steps=14 format=3 uid="uid://b6jfqn13ciqwu"]
 
 [ext_resource type="PackedScene" uid="uid://qn2ndofseqlm" path="res://scenes/player.tscn" id="1_ayjxf"]
 [ext_resource type="Script" path="res://scripts/demo_scene.gd" id="1_dck1u"]
 [ext_resource type="ArrayMesh" uid="uid://ove48mhkhi6t" path="res://scenes/GreyTree.obj" id="2_8ulao"]
 [ext_resource type="PackedScene" uid="uid://ccv27786t0nnb" path="res://scenes/slot_and_door.tscn" id="2_wyrjo"]
+
+[sub_resource type="SystemFont" id="SystemFont_t2xgm"]
+font_names = PackedStringArray("Tinkoff Sans")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_nflnt"]
+font = SubResource("SystemFont_t2xgm")
+font_size = 42
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_al051"]
+albedo_color = Color(0.270222, 0.270222, 0.270222, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_awnil"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -31,6 +42,42 @@ script = ExtResource("1_dck1u")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="BasicControls" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press and Hold  to Select Direction
+Release to Move!"
+label_settings = SubResource("LabelSettings_nflnt")
+horizontal_alignment = 1
+
+[node name="TryAgainHint" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Oh, the door is closed
+let's try again..."
+label_settings = SubResource("LabelSettings_nflnt")
+horizontal_alignment = 1
+
 [node name="Walls" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.77618, 0.5, -1.50601)
 
@@ -38,50 +85,60 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.776
 transform = Transform3D(-1, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -1, -1.45321, -0.5, 5.49713)
 use_collision = true
 size = Vector3(1, 1, 1.54896)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.49399, 0, 1.77618)
 use_collision = true
 size = Vector3(11, 1, 1)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.50601, 0, 1.77618)
 use_collision = true
 size = Vector3(11, 1, 1)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.50601, 0, -3.22382)
 use_collision = true
 size = Vector3(1, 1, 11)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.506009, 0, 6.77618)
 use_collision = true
 size = Vector3(1, 1, 9)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.74864, 0, 1.77618)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.74849, 0, 1.77618)
 use_collision = true
-size = Vector3(1, 1, 6.51025)
+size = Vector3(1, 1, 6.50995)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.89253, 0, -1.46257)
 use_collision = true
 size = Vector3(1, 1, 2.53624)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Walls"]
 use_collision = true
 size = Vector3(1, 1, 2.56304)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, 5.50111)
 use_collision = true
-size = Vector3(1, 1, 2.56304)
+size = Vector3(1, 1, 1.56082)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.22469, -0.5, 4.22097)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.72168, -0.5, 4.22097)
 use_collision = true
-size = Vector3(1, 1, 2.56304)
+size = Vector3(1, 1, 3.55702)
+material = SubResource("StandardMaterial3D_al051")
 
 [node name="GreyTree" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-0.166665, 0, -0.110556, 0, 0.2, 0, 0.110556, 0, -0.166665, 1.58169, 0.5, 5.07022)
@@ -95,7 +152,7 @@ shadow_enabled = true
 environment = SubResource("Environment_n2e0q")
 
 [node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 6)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 6.5)
 fov = 50.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -111,10 +168,11 @@ transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 5, 0.5, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.07037, 0.5, 3.9863)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelEndTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.532045, 0, 0)
 shape = SubResource("BoxShape3D_y4sc8")
 
 [node name="OpenSlotDoor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.64504, 0.5, 3.97411)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48432, 0.5, 3.92054)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OpenSlotDoor"]
 shape = SubResource("BoxShape3D_y4sc8")
