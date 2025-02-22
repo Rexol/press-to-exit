@@ -5,10 +5,10 @@ extends Node3D
 
 func _ready():
 	# Connect the slot's "open_door" signal to the door's "open" function
-	if slot.has_signal("open_door"):
-		slot.open_door.connect(door.open)
+	if slot.has_signal("trigger"):
+		slot.trigger.connect(door.trigger)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

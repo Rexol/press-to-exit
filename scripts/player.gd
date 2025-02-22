@@ -13,7 +13,7 @@ var move_direction = Vector3.ZERO
 var selecting_direction = false
 var moving = false
 var start_position = Vector3.ZERO
-var rotation_direction = 1  # 1 - clockwise, -1 - counterclockwise
+var rotation_direction = -1  # 1 - clockwise, -1 - counterclockwise
 var locked = false
 
 func _input(event):

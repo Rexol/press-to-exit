@@ -19,6 +19,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.366667, 1, 0, -0.6, 0)
 
 [sub_resource type="Animation" id="Animation_tcude"]
 resource_name = "door_open"
+length = 0.5
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
