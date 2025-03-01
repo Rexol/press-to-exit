@@ -3,10 +3,7 @@ extends Node3D
 
 @onready var slot_door = $Walls/SlotDoor
 @onready var control_hint = $CanvasLayer/BasicControls
-@onready var slot_hint = $CanvasLayer/SlotControls
 @onready var try_again_hint = $CanvasLayer/TryAgainHint
-
-var slot_available = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,7 +24,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func show_end_screen():
-	var end_screen = preload("res://scenes/Screens/EndScreen.tscn").instantiate()
+	var end_screen = preload("res://entities/ui/end_screen/EndScreen.tscn").instantiate()
 	get_tree().current_scene.add_child(end_screen)
 
 
@@ -38,9 +35,8 @@ func _on_level_end_trigger_body_entered(body:Node3D) -> void:
 
 func _on_open_slot_door_body_entered(body:Node3D) -> void:
 	if body.is_in_group("cube"):
-		if slot_available:
+		if is_instance_valid(slot_door):
 			try_again_hint.visible = true
 			await get_tree().create_timer(1.5).timeout
-			slot_available = false
 			hide_message(try_again_hint)
 			slot_door.free()

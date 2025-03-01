@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://rin1wsdgxdc3"]
 
-[ext_resource type="Script" path="res://scripts/interaction_slot.gd" id="1_mfxjo"]
+[ext_resource type="Script" path="res://entities/interactables/slot/interaction_slot.gd" id="1_glr8l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgbir"]
 albedo_color = Color(0.664833, 0.000816009, 0.750442, 1)
@@ -21,7 +21,7 @@ font = SubResource("SystemFont_4slcm")
 font_size = 32
 
 [node name="InteractionSlot" type="Node3D"]
-script = ExtResource("1_mfxjo")
+script = ExtResource("1_glr8l")
 metadata/_edit_horizontal_guides_ = [10.0]
 metadata/_edit_vertical_guides_ = [218.0]
 

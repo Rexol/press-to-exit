@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3jo81qy2kohm"]
 
-[ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_vypw8"]
+[ext_resource type="Script" path="res://entities/ui/end_screen/end_screen.gd" id="1_43sjw"]
 
 [sub_resource type="SystemFont" id="SystemFont_phvvd"]
 font_names = PackedStringArray("Tinkoff Sans")
@@ -13,6 +13,7 @@ font_size = 64
 
 [sub_resource type="SystemFont" id="SystemFont_e82tj"]
 font_names = PackedStringArray("Tinkoff Sans")
+subpixel_positioning = 0
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
@@ -23,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_vypw8")
+script = ExtResource("1_43sjw")
 
 [node name="FadeOverlay" type="ColorRect" parent="."]
 layout_mode = 1
