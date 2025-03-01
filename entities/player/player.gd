@@ -15,6 +15,7 @@ var moving = false
 var start_position = Vector3.ZERO
 var rotation_direction = -1  # 1 - clockwise, -1 - counterclockwise
 var locked = false
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _input(event):
 	if event.is_action_pressed("latter_button"):
@@ -49,8 +50,14 @@ func _physics_process(delta: float) -> void:
 	if selecting_direction:
 		arrow_pivot.rotate_y(rotation_speed * delta * rotation_direction)
 
+	if is_on_floor():
+		velocity.y = 0
+	else:
+		velocity.y -= gravity * delta
+
 	if moving:
-		velocity = move_direction * move_speed
+		velocity.x = move_direction.x * move_speed
+		velocity.z = move_direction.z * move_speed
 		move_and_slide()
 		
 		if global_transform.origin.distance_to(start_position) >= travel_distance:

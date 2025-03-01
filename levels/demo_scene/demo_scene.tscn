@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b6jfqn13ciqwu"]
+[gd_scene load_steps=17 format=4 uid="uid://b6jfqn13ciqwu"]
 
 [ext_resource type="Script" path="res://levels/demo_scene/demo_scene.gd" id="1_m5ybp"]
 [ext_resource type="PackedScene" uid="uid://qn2ndofseqlm" path="res://entities/player/player.tscn" id="2_af728"]
@@ -64,6 +64,8 @@ background_mode = 2
 sky = SubResource("Sky_5upgx")
 tonemap_mode = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4sc8"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwhrt"]
 albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
 
@@ -71,7 +73,8 @@ albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
 material = SubResource("StandardMaterial3D_uwhrt")
 size = Vector2(10, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_y4sc8"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4djxv"]
+points = PackedVector3Array(-5, 0, -5, -5, 0, 5, 5, 0, -5, 5, 0, 5)
 
 [node name="DemoScene" type="Node3D"]
 script = ExtResource("1_m5ybp")
@@ -192,9 +195,6 @@ environment = SubResource("Environment_n2e0q")
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 6.5)
 fov = 50.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_obcdt")
-
 [node name="Player" parent="." instance=ExtResource("2_af728")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.265, 0.5, 3.478)
 
@@ -213,6 +213,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48432, 0.5, 3.92054)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OpenSlotDoor"]
 shape = SubResource("BoxShape3D_y4sc8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_obcdt")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_4djxv")
 
 [connection signal="body_entered" from="LevelEndTrigger" to="." method="_on_level_end_trigger_body_entered"]
 [connection signal="body_entered" from="OpenSlotDoor" to="." method="_on_open_slot_door_body_entered"]
