@@ -4,6 +4,7 @@ extends Node3D
 @onready var slot_door = $Walls/SlotDoor
 @onready var control_hint = $CanvasLayer/BasicControls
 @onready var try_again_hint = $CanvasLayer/TryAgainHint
+@onready var door = $Door
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +13,7 @@ func _ready() -> void:
 func _input(event):
 	if event.is_action_released("latter_button"):
 		hide_message(control_hint)
+		# print("Door position: x:%f y:%f z:%f" % [door.transform.position.x, door.transform.position.y, door.transform.position.z] )
 
 func hide_message(label: Label):
 	var tween = create_tween()

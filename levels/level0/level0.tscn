@@ -1,10 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6jfqn13ciqwu"]
+[gd_scene load_steps=14 format=3 uid="uid://ee7vmkdifujk"]
 
-[ext_resource type="Script" path="res://levels/demo_scene/demo_scene.gd" id="1_m5ybp"]
-[ext_resource type="PackedScene" uid="uid://qn2ndofseqlm" path="res://entities/player/player.tscn" id="2_af728"]
-[ext_resource type="PackedScene" uid="uid://dmba417rg84tb" path="res://entities/interactables/door/door.tscn" id="4_hrt64"]
-[ext_resource type="PackedScene" uid="uid://rin1wsdgxdc3" path="res://entities/interactables/slot/interaction_slot.tscn" id="4_ygdpq"]
-[ext_resource type="ArrayMesh" uid="uid://4qw0sdgsalch" path="res://entities/environment/GreyTree.obj" id="5_ob84a"]
+[ext_resource type="Script" path="res://levels/demo_scene/demo_scene.gd" id="1_vw68c"]
+[ext_resource type="PackedScene" uid="uid://qn2ndofseqlm" path="res://entities/player/player.tscn" id="2_ok6g0"]
+[ext_resource type="PackedScene" uid="uid://dmba417rg84tb" path="res://entities/interactables/door/door.tscn" id="4_s3383"]
 
 [sub_resource type="SystemFont" id="SystemFont_t2xgm"]
 font_names = PackedStringArray("Tinkoff Sans")
@@ -31,8 +29,6 @@ tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4sc8"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fs7hx"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwhrt"]
 albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
 
@@ -44,7 +40,7 @@ size = Vector2(10, 10)
 points = PackedVector3Array(-5, 0, -5, -5, 0, 5, 5, 0, -5, 5, 0, 5)
 
 [node name="DemoScene" type="Node3D"]
-script = ExtResource("1_m5ybp")
+script = ExtResource("1_vw68c")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -158,8 +154,8 @@ environment = SubResource("Environment_n2e0q")
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 6.5)
 fov = 50.0
 
-[node name="Player" parent="." instance=ExtResource("2_af728")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.80234, 0.5, 3.35988)
+[node name="Player" parent="." instance=ExtResource("2_ok6g0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.265, 0.5, 3.478)
 
 [node name="LevelEndTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.07037, 0.5, 3.9863)
@@ -174,26 +170,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48432, 0.5, 3.92054)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OpenSlotDoor"]
 shape = SubResource("BoxShape3D_y4sc8")
 
-[node name="Floor" type="StaticBody3D" parent="."]
-physics_material_override = SubResource("PhysicsMaterial_fs7hx")
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="Floor" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("PlaneMesh_obcdt")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_4djxv")
 
-[node name="Door" parent="." instance=ExtResource("4_hrt64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 4)
-
-[node name="InteractionSlot" parent="." instance=ExtResource("4_ygdpq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.763, 0.1, 1.249)
-
-[node name="GreyTree" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.157785, 0, -0.122898, 0, 0.2, 0, 0.122898, 0, 0.157785, 3.25399, 0.913621, -3.01415)
-mesh = ExtResource("5_ob84a")
+[node name="Door" parent="." instance=ExtResource("4_s3383")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35209, 0.8244, 0)
 
 [connection signal="body_entered" from="LevelEndTrigger" to="." method="_on_level_end_trigger_body_entered"]
 [connection signal="body_entered" from="OpenSlotDoor" to="." method="_on_open_slot_door_body_entered"]
-[connection signal="trigger" from="InteractionSlot" to="Door" method="_trigger"]

@@ -74,7 +74,7 @@ func _process(delta):
 			progress_timer += delta
 			progress_bar.value = (progress_timer / required_hold_time) * 100
 			if progress_timer >= required_hold_time:
-				emit_signal("trigger")
+				trigger.emit()
 				signal_emitted = true  # Set the flag to true once the signal is emitted
 		elif player_inside and Input.is_action_just_released("latter_button"):
 			progress_timer = 0.0
